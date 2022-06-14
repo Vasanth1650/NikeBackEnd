@@ -68,8 +68,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		//http.authorizeRequests((request)->request.antMatchers("/h2-console/**").permitAll().anyRequest().authenticated()).httpBasic();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().exceptionHandling()
 		.authenticationEntryPoint(authenticationEntryPoint).and()
-		.authorizeRequests((request)->request.antMatchers("h2-console/**","/api/v1/auth/login","api/v1/auth/dashbord","/auth/userinfo","/users/addUser","/users/addAuthority","/users/addAuth"
-				,"/product/save","/product/{id}","/product/delete/{id}","/product/allproducts","/product/updateProduct").permitAll().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated())
+		.authorizeRequests((request)->request.antMatchers("h2-console/**","/search/add","/api/v1/auth/login","api/v1/auth/dashbord","/auth/userinfo","/users/addUser","/users/addAuthority","/users/addAuth"
+				,"/product/save","/product/{id}","/product/delete/{id}","/product/allproducts","/totalproducts/addproducts","/product/updateProduct","/addnew/save","/totalproducts/allproducts",
+				"/totalproducts/category/{category}","/totalproducts/gender/{gender}","/totalproducts/addproducts","/totalproducts/{id}","/totalproducts/delete/{id}","/totalproducts/updateProduct","/totalproducts/name/{productname}").permitAll().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated())
 		.addFilterBefore(new JWTAuthenticationFilter(userservice,jwtTokenHelper),UsernamePasswordAuthenticationFilter.class);
 		
 		

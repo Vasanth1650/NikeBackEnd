@@ -30,6 +30,10 @@ public class CustomUserService implements UserDetailsService{
 		
 	}
 	
+	public User addUser(User user) {
+		return userdetailrepository.save(user);
+	}
+	
 	
 
 }
