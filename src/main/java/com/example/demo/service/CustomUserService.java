@@ -54,8 +54,8 @@ public class CustomUserService implements UserDetailsService{
 	
 	//To Add New User
 	public User addUser(User user) throws Exception {
-		User local = this.userdetailrepository.findByUsername(user.getUsername());
-	
+		User local = userdetailrepository.save(user);
+		
 		return local;
 	}
 	
