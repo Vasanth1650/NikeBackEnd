@@ -57,25 +57,36 @@ public class TotalProductsController {
 		return ResponseEntity.ok(service.getGender(gender));
 	}
 	
-	@GetMapping("/category/{category}")
-	public ResponseEntity<List<TotalProducts>> findByCategory(@PathVariable String category){
-		return ResponseEntity.ok(service.getCategory(category));
+	@GetMapping("/collection/{collection}")
+	public ResponseEntity<List<TotalProducts>> findByCategory(@PathVariable String collection){
+		return ResponseEntity.ok(service.getCollection(collection));
 	}
 	
-	@PutMapping("/updateProduct")
+	@GetMapping("/category/{category1}")
+	public ResponseEntity<List<TotalProducts>> findByCatesgory(@PathVariable String category1){
+		return ResponseEntity.ok(service.getCategory1(category1));
+	}
+	
+	@PutMapping("/updateProduct/{id}")
 	public ResponseEntity<TotalProducts> updateProduct(@PathVariable int id,@RequestBody TotalProducts product) {
 		TotalProducts products = service.getProductbyId(id);
 		products.setProductname(product.getProductname());
 		products.setProductdescription(product.getProductdescription());
 		products.setPrice(product.getPrice());
-		products.setSize(product.getSize());
-		products.setProductspecification(product.getProductspecification());
+		products.setSize1(product.getSize1());
+		products.setSize2(product.getSize2());
+		products.setSize3(product.getSize3());
+		products.setSize4(product.getSize4());
+		products.setSize5(product.getSize5());
+		products.setProductspecification1(product.getProductspecification1());
 		products.setImage1(product.getImage1());
 		products.setImage2(product.getImage2());
 		products.setImage3(product.getImage3());
 		products.setGender(product.getGender());
 		products.setDelivery(product.getDelivery());
-		products.setCategory(product.getCategory());
+		products.setCategory1(product.getCategory1());
+		products.setCategory2(product.getCategory2());
+		products.setCategory3(product.getCategory3());
 		TotalProducts updated = service.addProduct(products);
 		return ResponseEntity.ok(updated);
 	}

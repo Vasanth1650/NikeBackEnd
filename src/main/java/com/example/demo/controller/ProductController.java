@@ -30,12 +30,12 @@ public class ProductController {
 	}
 	
 	@GetMapping("/allproducts")
-	public List<Product> getAllProducts(){
+	public List<Product> getAllProducts() throws Exception{
 		return service.getProducts();
 	}
 	
 	@GetMapping("/{id}")
-	public Product findProductById(@PathVariable int id){
+	public Product findProductById(@PathVariable int id) throws Exception{
 		return service.getProductById(id);
 	}
 	
@@ -44,21 +44,9 @@ public class ProductController {
 		service.deleteById(id);
 	}
 	
-	@PutMapping("/updateProduct")
-	public ResponseEntity<Product> updateProducts(@PathVariable int id,@RequestBody Product product) {
-		Product products = service.getProductById(id);
-		products.setProductname(product.getProductname());
-		products.setProductdescription(product.getProductdescription());
-		products.setProductprice(product.getProductprice());
-		products.setProductsize(product.getProductsize());
-		products.setProductspecification(product.getProductspecification());
-		products.setComments(product.getComments());
-		products.setProductimage1(product.getProductimage1());
-		products.setProductimage2(product.getProductimage2());
-		products.setProductimage3(product.getProductimage3());
-		products.setGender(product.getGender());
-		products.setCategory(product.getCategory());
-		Product update = service.addProduct(products);
-		return ResponseEntity.ok(update);
+	@GetMapping("/gender/{gender}")
+	public List<Product> findByGender(@PathVariable String gender){
+		return service.getByGender(gender);
 	}
+	
 }

@@ -1,3 +1,10 @@
+/** 
+ * TotalProducts Entity Will Used To Store The Regular Products Which Contains Normal Information Rather Than The
+ * Special One 
+ * @author Vasanth
+ **/
+
+
 package com.example.demo.model;
 
 import javax.persistence.Entity;
@@ -18,9 +25,25 @@ public class TotalProducts {
 	
 	private String productdescription;
 	
-	private String productspecification;
+	private String productspecification1;
 	
-	private String size;
+	private String productspecification2;
+	
+	private String productspecification3;
+	
+	private String productspecification4;
+	
+	private String productspecification5;
+	
+	private String size1;
+	
+	private String size2;
+	
+	private String size3;
+	
+	private String size4;
+	
+	private String size5;
 	
 	private String gender;
 	
@@ -30,11 +53,27 @@ public class TotalProducts {
 	
 	private String image3;
 	
-	private String category;
+	private String category1;
+	
+	private String category2;
+	
+	private String category3;
 	
 	private String price;
 	
 	private String delivery;
+	
+	private String collection;
+	
+	//Getters And Setters
+
+	public String getCollection() {
+		return collection;
+	}
+
+	public void setCollection(String collection) {
+		this.collection = collection;
+	}
 
 	public int getId() {
 		return id;
@@ -60,20 +99,84 @@ public class TotalProducts {
 		this.productdescription = productdescription;
 	}
 
-	public String getProductspecification() {
-		return productspecification;
+	public String getProductspecification1() {
+		return productspecification1;
 	}
 
-	public void setProductspecification(String productspecification) {
-		this.productspecification = productspecification;
+	public void setProductspecification1(String productspecification1) {
+		this.productspecification1 = productspecification1;
 	}
 
-	public String getSize() {
-		return size;
+	public String getProductspecification2() {
+		return productspecification2;
 	}
 
-	public void setSize(String size) {
-		this.size = size;
+	public void setProductspecification2(String productspecification2) {
+		this.productspecification2 = productspecification2;
+	}
+
+	public String getProductspecification3() {
+		return productspecification3;
+	}
+
+	public void setProductspecification3(String productspecification3) {
+		this.productspecification3 = productspecification3;
+	}
+
+	public String getProductspecification4() {
+		return productspecification4;
+	}
+
+	public void setProductspecification4(String productspecification4) {
+		this.productspecification4 = productspecification4;
+	}
+
+	public String getProductspecification5() {
+		return productspecification5;
+	}
+
+	public void setProductspecification5(String productspecification5) {
+		this.productspecification5 = productspecification5;
+	}
+
+	public String getSize1() {
+		return size1;
+	}
+
+	public void setSize1(String size1) {
+		this.size1 = size1;
+	}
+
+	public String getSize2() {
+		return size2;
+	}
+
+	public void setSize2(String size2) {
+		this.size2 = size2;
+	}
+
+	public String getSize3() {
+		return size3;
+	}
+
+	public void setSize3(String size3) {
+		this.size3 = size3;
+	}
+
+	public String getSize4() {
+		return size4;
+	}
+
+	public void setSize4(String size4) {
+		this.size4 = size4;
+	}
+
+	public String getSize5() {
+		return size5;
+	}
+
+	public void setSize5(String size5) {
+		this.size5 = size5;
 	}
 
 	public String getGender() {
@@ -108,12 +211,28 @@ public class TotalProducts {
 		this.image3 = image3;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getCategory1() {
+		return category1;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategory1(String category1) {
+		this.category1 = category1;
+	}
+
+	public String getCategory2() {
+		return category2;
+	}
+
+	public void setCategory2(String category2) {
+		this.category2 = category2;
+	}
+
+	public String getCategory3() {
+		return category3;
+	}
+
+	public void setCategory3(String category3) {
+		this.category3 = category3;
 	}
 
 	public String getPrice() {
@@ -134,16 +253,23 @@ public class TotalProducts {
 
 	public TotalProducts() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
+	
+	//ToString Helps To Return The Value In String
 	@Override
 	public String toString() {
 		return "TotalProducts [id=" + id + ", productname=" + productname + ", productdescription=" + productdescription
-				+ ", productspecification=" + productspecification + ", size=" + size + ", gender=" + gender
-				+ ", image1=" + image1 + ", image2=" + image2 + ", image3=" + image3 + ", category=" + category
-				+ ", price=" + price + ", delivery=" + delivery + "]";
+				+ ", productspecification1=" + productspecification1 + ", productspecification2="
+				+ productspecification2 + ", productspecification3=" + productspecification3
+				+ ", productspecification4=" + productspecification4 + ", productspecification5="
+				+ productspecification5 + ", size1=" + size1 + ", size2=" + size2 + ", size3=" + size3 + ", size4="
+				+ size4 + ", size5=" + size5 + ", gender=" + gender + ", image1=" + image1 + ", image2=" + image2
+				+ ", image3=" + image3 + ", category1=" + category1 + ", category2=" + category2 + ", category3="
+				+ category3 + ", price=" + price + ", delivery=" + delivery + "]";
 	}
+
+	
 
 		
 	

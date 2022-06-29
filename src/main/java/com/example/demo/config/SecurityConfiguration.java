@@ -5,12 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -34,19 +32,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	private AuthenticationEntryPoint authenticationEntryPoint;
 	
 	
-	/*@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		//In memory
-		auth.inMemoryAuthentication().withUser("Vasanth").password(passwordEncoder().encode("raina9486")).authorities("USER","ADMIN");
-		//database
-		auth.userDetailsService(userservice).passwordEncoder(passwordEncoder());
-	}*/
-	
-	/*@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}*/
-	
 	@Bean
     public PasswordEncoder passwordEncoder(){
         return NoOpPasswordEncoder.getInstance();
@@ -57,25 +42,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
-		// TODO Auto-generated method stub
 		return super.authenticationManagerBean();
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//http.authorizeRequests().anyRequest().authenticated();
-		
-		//http.authorizeRequests((request)->request.antMatchers("/h2-console/**").permitAll().anyRequest().authenticated()).httpBasic();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().exceptionHandling()
 		.authenticationEntryPoint(authenticationEntryPoint).and()
-		.authorizeRequests((request)->request.antMatchers("h2-console/**","/search/add","/api/v1/auth/login","api/v1/auth/dashbord","/auth/userinfo","/users/addUser","/users/addAuthority","/users/addAuth"
-				,"/product/save","/product/{id}","/product/delete/{id}","/product/allproducts","/totalproducts/addproducts","/product/updateProduct","/addnew/save","/totalproducts/allproducts",
-				"/totalproducts/category/{category}","/totalproducts/gender/{gender}","/totalproducts/addproducts","/totalproducts/{id}","/totalproducts/delete/{id}","/totalproducts/updateProduct","/totalproducts/name/{productname}").permitAll().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated())
+		.authorizeRequests(request->request.antMatchers("h2-console/**","/search/add","/api/v1/auth/login","api/v1/auth/dashbord","/auth/userinfo","/users/addUser","/users/addAuthority","/users/addAuth"
+				,"/product/save","/product/{id}","/product/delete/{id}","/product/allproducts","/totalproducts/addproducts","/product/updateProduct/{id}","/addnew/save","/addnew/{id}","/totalproducts/allproducts",
+				"/charging/{id}","/totalproducts/category/{category1}","/totalproducts/collection/{collection}","/totalproducts/gender/{gender}","/totalproducts/addproducts","/totalproducts/{id}","/totalproducts/delete/{id}","/totalproducts/updateProduct",
+				"/charging/checkout","/totalproducts/name/{productname}","/wishlist/addwishlist","/wishlist/{id}","/wishlist/userid/{userid}","/wishlist/product/{productid}","/wishlist/username/{username}"
+						,"/ordered/generateorder","/ordered/getbyuserid/{userid}","/product/gender/{gender}","/ordered/updateOrder/{id}","/ordered/viewallproducts","/ordered/{id}","/charging/delete/{userid}","/charging/{userid}",
+						"/refund/refunding/{userid}","/refund/viewerequest","/refund/{id}","/refund/refundcollector","/refund/updaterefund/{id}").permitAll().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated())
 		.addFilterBefore(new JWTAuthenticationFilter(userservice,jwtTokenHelper),UsernamePasswordAuthenticationFilter.class);
 		
 		
 		http.cors();
-		//http.formLogin();
 		
 		http.csrf().disable().headers().frameOptions().disable();
 	}

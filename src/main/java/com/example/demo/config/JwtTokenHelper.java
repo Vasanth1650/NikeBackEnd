@@ -1,13 +1,11 @@
 package com.example.demo.config;
 
-
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -57,7 +55,7 @@ public class JwtTokenHelper {
 	        return username;
 	 }
 	 
-	 public String generateToken(String username) throws InvalidKeySpecException, NoSuchAlgorithmException {
+	 public String generateToken(String username){
 	        
 	        return Jwts.builder()
 	                .setIssuer( appName )
@@ -99,7 +97,7 @@ public class JwtTokenHelper {
 	}
 
 
-	public Date getIssuedAtDateFromToken(String token) {
+	public Date getIssuedAtDateFromToken(String token) throws NotFoundException{
 	        Date issueAt;
 	        try {
 	            final Claims claims = this.getAllClaimsFromToken(token);

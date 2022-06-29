@@ -1,3 +1,9 @@
+/**
+ * SearchResult Entity Helps Us To Store Every Search Result Into A Database And With That The Most Searched Product
+ * Will Be Obtained According To The We Can Design UserExperience
+ * @author Vasanth
+ **/
+
 package com.example.demo.model;
 
 import javax.persistence.Entity;
@@ -34,9 +40,10 @@ public class SearchResult {
 
 	public SearchResult() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
+	
+	//ToString Returns The Value Given To It In String Format
 	@Override
 	public String toString() {
 		return "SearchResult [id=" + id + ", search=" + search + "]";

@@ -1,3 +1,15 @@
+/**
+ * Entity Class For Storing Authority ID Which Is Mapped With The User Class
+ * Entity user_id and authorities_id 
+ * @Entity Refers This Is The Entity Class
+ * @Table To The Particular Table For Operations
+ * @author Vasanth
+ */
+ 
+
+
+
+
 package com.example.demo.model;
 
 import javax.persistence.Entity;
@@ -6,33 +18,50 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+
 @Entity
+
 @Table(name="AUTH_USER_AUTHORITY")
+
 public class Auth {
-	@Id
+	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long user_id;
-	private long authorities_id;
-	public long getUser_id() {
+	private int user_id;
+	
+	
+	private int authorities_id;
+	
+	//Getters and Setters
+	public int getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(long user_id) {
+	
+	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	public long getAuthorities_id() {
+	
+	public int getAuthorities_id() {
 		return authorities_id;
 	}
-	public void setAuthorities_id(long authorities_id) {
+	
+	public void setAuthorities_id(int authorities_id) {
 		this.authorities_id = authorities_id;
 	}
-	public Auth(long user_id, long authorities_id) {
+	
+	
+	public Auth(int user_id, int authorities_id) {
 		super();
 		this.user_id = user_id;
 		this.authorities_id = authorities_id;
 	}
+	
+	//Super Constructor To Refer To The Base Class
 	public Auth() {
 		super();
 	}
+	
+	//To String Helps To Get A String Object Representing The Value In Number Object 
 	@Override
 	public String toString() {
 		return "Auth [user_id=" + user_id + ", authorities_id=" + authorities_id + "]";

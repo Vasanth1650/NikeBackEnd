@@ -1,11 +1,19 @@
 package com.example.demo.response;
-
+/**
+ * After Authentication The Token Contains This UserInfo Entity Information Where User Is Allowed To Access This Particular
+ * Data
+ * @author Vasanth
+ *
+ */
 public class UserInfo {
 	
 	private long id;
 	private String email;
 	private String phonenumber;
 	private String username;
+	private String address;
+	private String state;
+	private String city;
 	
 	private Object roles;
 	
@@ -52,6 +60,32 @@ public class UserInfo {
 	public void setRoles(Object roles) {
 		this.roles = roles;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
+	
 	
 	
 }

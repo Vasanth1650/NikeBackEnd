@@ -24,8 +24,12 @@ public class TotalProductServices {
 		return repository.findByProductname(productname);
 	}
 	
-	public List<TotalProducts> getCategory(String category){
-		return repository.findByCategory(category);
+	public List<TotalProducts> getCategory1(String category1){
+		return repository.findByCategory1(category1);
+	}
+	
+	public List<TotalProducts> getCollection(String collection){
+		return repository.findByCollection(collection);
 	}
 	
 	public List<TotalProducts> getGender(String gender){

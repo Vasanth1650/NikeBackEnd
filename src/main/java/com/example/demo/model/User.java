@@ -1,9 +1,23 @@
+/**
+ * User Entity Class Acts As The Security For Login And Signing In With The Help Of AesEncryptor The User Detail Will Be
+ * Stored In The Database With Encryption.
+ * 
+ * And User Class Implements UserDetails Where This UserDetails Repository Consists Of A Certain Method To Get Authorities
+ * And getPassword() And Expiration Of Credential Which Is Provided By The SpringFrameWork Security Core 
+ * @author Vasanth
+ **/
+
+
+
+
 package com.example.demo.model;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,10 +26,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.example.demo.dao.AesEncryptor;
 
 
 @Table(name= "users" )
@@ -24,64 +41,73 @@ public class User implements UserDetails{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private int id;
 	
+	@Convert(converter = AesEncryptor.class)
 	private String username;
 	
+	@Convert(converter = AesEncryptor.class)
 	private String password;
 	
+	@Convert(converter = AesEncryptor.class)
 	private String email;
 	
+	@Convert(converter = AesEncryptor.class)
 	private String phonenumber;
+	
+
+	private String address;
+	
+
+	private String state;
+	
+
+	private String city;
+	
 	
 	private boolean enabled=true;
 	
-	
+	//Mapping To Define Authority Of The Particular User And Foreign Key For Storing Data
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinTable(name = "AUTH_USER_AUTHORITY", joinColumns = @JoinColumn(referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(referencedColumnName ="id"))
 	private List<Authority> authorities;
 	
 	
 	
+	//Getters Ans Setters
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return authorities;
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return this.password;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return this.username;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return this.enabled;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return this.enabled;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return this.enabled;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return this.enabled;
 	}
 
@@ -89,7 +115,7 @@ public class User implements UserDetails{
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -123,6 +149,30 @@ public class User implements UserDetails{
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 	
