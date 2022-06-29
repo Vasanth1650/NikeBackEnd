@@ -111,7 +111,7 @@ public class User implements UserDetails{
 		return this.enabled;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

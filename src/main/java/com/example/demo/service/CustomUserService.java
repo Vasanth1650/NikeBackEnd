@@ -55,22 +55,7 @@ public class CustomUserService implements UserDetailsService{
 	//To Add New User
 	public User addUser(User user) throws Exception {
 		User local = this.userdetailrepository.findByUsername(user.getUsername());
-		try {
-		if(local!=null) {
-			//Checks And Throws Runtime Exception If User Already Exists And Logs
-			logger.error("User Already Present With Username");
-			System.out.println("User Already Present");
-			throw new RuntimeException("Error Occured");
-			
-		}else {
-			//If User Didn't Exists The Data Will Be Stored 
-			logger.info("User Data Successfully Stored");
-			local = userdetailrepository.save(user);
-		}
-		}catch(Exception e) {
-			//Catch Exception If Error Ocuured
-			throw new Exception("Error Has Been Ocuured In Signing In");
-		}
+	
 		return local;
 	}
 	
@@ -79,6 +64,15 @@ public class CustomUserService implements UserDetailsService{
 	public User getById(int id) {
 		Optional<User> option = userdetailrepository.findById(id);
 		return (option.get());
+	}
+	
+	//Update Method To Update User Information
+	public User updateUser(int id,User user) {
+		if(getById(user.getId())==null) {
+			logger.error("Id Not Found");
+			return null;
+		}
+		return userdetailrepository.save(user);
 	}
 
 }
