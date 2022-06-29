@@ -7,6 +7,7 @@
 
 package com.example.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,16 +24,22 @@ public class TotalProducts {
 	
 	private String productname;
 	
+	@Column(length=1500)
 	private String productdescription;
 	
+	@Column(length=1500)
 	private String productspecification1;
 	
+	@Column(length=1500)
 	private String productspecification2;
 	
+	@Column(length=1500)
 	private String productspecification3;
 	
+	@Column(length=1500)
 	private String productspecification4;
 	
+	@Column(length=1500)
 	private String productspecification5;
 	
 	private String size1;
@@ -47,10 +54,13 @@ public class TotalProducts {
 	
 	private String gender;
 	
+	@Column(length=1500)
 	private String image1;
 	
+	@Column(length=1500)
 	private String image2;
 	
+	@Column(length=1500)
 	private String image3;
 	
 	private String category1;
@@ -61,8 +71,10 @@ public class TotalProducts {
 	
 	private String price;
 	
+	@Column(length=1500)
 	private String delivery;
 	
+	@Column(length=1500)
 	private String collection;
 	
 	//Getters And Setters

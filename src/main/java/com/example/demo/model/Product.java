@@ -5,6 +5,7 @@
 
 package com.example.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,9 @@ public class Product {
 	
 	private String productname;
 	
+	@Column(length=1500)
 	private String productdescription;
+	
 	
 	private int productprice;
 	
@@ -34,38 +37,55 @@ public class Product {
 	
 	private String size5;
 	
+	@Column(length=1500)
 	private String productspecification1;
 	
+	@Column(length=1500)
 	private String productspecification2;
 	
+	@Column(length=1500)
 	private String productspecification3;
 	
+	@Column(length=1500)
 	private String productspecification4;
 	
+	@Column(length=1500)
 	private String productspecification5;
 	
+	@Column(length=1500)
 	private String productimage1;
 	
+	@Column(length=1500)
 	private String productimage2;
 	
+	@Column(length=1500)
 	private String productimage3;
 	
+	@Column(length=1500)
 	private String productimage4;
 	
+	@Column(length=1500)
 	private String productimage5;
 	
+	@Column(length=1500)
 	private String productimage6;
 	
+	@Column(length=1500)
 	private String productimage7;
 	
+	@Column(length=1500)
 	private String productimage8;
 	
+	@Column(length=1500)
 	private String productimage9;
 	
+	@Column(length=1500)
 	private String productimage10;
 	
+	@Column(length=1500)
 	private String productimage11;
 	
+	@Column(length=1500)
 	private String productimage12;
 	
 	private String gender;
