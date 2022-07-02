@@ -36,6 +36,11 @@ public class AddUserController {
 		return customservice.getById(id);
 	}
 	
+	@GetMapping("/findby/{username}")
+	public User getUserByName(@PathVariable String username) throws Exception{
+		return customservice.getByUsername(username);
+	}
+	
 	@PutMapping("/updateuser/{id}")
 	public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable int id) throws Exception{
 		User users = customservice.getById(id);

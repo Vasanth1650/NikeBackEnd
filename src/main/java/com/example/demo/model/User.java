@@ -76,6 +76,16 @@ public class User implements UserDetails{
 	
 	//Getters Ans Setters
 
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public User(int i, String username, String password, String email, String phonenumber, String address, String state,String city,
+			boolean b) {
+		
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;

@@ -49,4 +49,42 @@ public class ProductController {
 		return service.getByGender(gender);
 	}
 	
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Product>editProduct(@RequestBody Product product,@PathVariable int id) throws Exception{
+		Product products = service.getProductById(id);
+		products.setProductname(product.getProductname());
+		products.setProductdescription(product.getProductdescription());
+		products.setProductprice(product.getProductprice());
+		products.setSize1(product.getSize1());
+		products.setSize2(product.getSize2());
+		products.setSize3(product.getSize3());
+		products.setSize3(product.getSize3());
+		products.setSize4(product.getSize4());
+		products.setSize5(product.getSize5());
+		products.setProductspecification1(product.getProductspecification1());
+		products.setProductspecification2(product.getProductspecification2());
+		products.setProductspecification3(product.getProductspecification3());
+		products.setProductspecification4(product.getProductspecification4());
+		products.setProductspecification5(product.getProductspecification5());
+		products.setProductimage1(product.getProductimage1());
+		products.setProductimage2(product.getProductimage2());
+		products.setProductimage3(product.getProductimage3());
+		products.setProductimage4(product.getProductimage4());
+		products.setProductimage5(product.getProductimage5());
+		products.setProductimage6(product.getProductimage6());
+		products.setProductimage7(product.getProductimage7());
+		products.setProductimage8(product.getProductimage8());
+		products.setProductimage9(product.getProductimage9());
+		products.setProductimage10(product.getProductimage10());
+		products.setProductimage11(product.getProductimage11());
+		products.setProductimage12(product.getProductimage12());
+		products.setGender(product.getGender());
+		products.setCategory1(product.getCategory1());
+		products.setCategory2(product.getCategory2());
+		products.setCategory3(product.getCategory3());
+		Product updated = service.addProduct(products);
+		return ResponseEntity.ok(updated);
+	}
+	
+	
 }

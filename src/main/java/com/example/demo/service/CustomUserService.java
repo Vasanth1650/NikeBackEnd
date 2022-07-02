@@ -5,7 +5,9 @@
  * */
 
 package com.example.demo.service;
+import java.util.List;
 import java.util.Optional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import com.example.demo.dao.UserDetailsRepository;
 import com.example.demo.model.User;
 
@@ -39,23 +42,48 @@ public class CustomUserService implements UserDetailsService{
 	}
 	
 	//findbyUsername Method
-	public User getByUsername(String username) {
+	public User getByUsername(String username) throws Exception {
+		//checks if any usernaem exists
+		User user = userdetailrepository.findByUsername(username);
 		try {
-			if(username!=null) {
-				logger.info("Checking.... "+username);
+			if(user==null) {
+				//if not exists throws exception and log4j error
+				logger.error("No User Found.... "+username);
+				throw new Exception("Catch me");
+			}
+			if(user!=null) {
+				//if found shows the found value
+				logger.info("Username Found..."+username);
 			}
 		}catch(Exception e){
+			//catches exception
 			logger.error("The Username Is Not Present... "+username);
-			System.out.println("No Data Present For The UserName");
+			throw new Exception("The Username Is Not Present...");
 		}
-		return userdetailrepository.findByUsername(username);
+		return user;
 	}
 	
 	
 	//To Add New User
 	public User addUser(User user) throws Exception {
-		User local = userdetailrepository.save(user);
-		
+		//getting values locally if username is foundby
+		User local = this.userdetailrepository.findByUsername(user.getUsername());
+		try {
+			if(local != null) {
+				//logger throws error message where the information of the user already exists and exception
+				logger.error("User Already Exists");
+				throw new Exception("Catch me");
+			}else {
+				//if not any saves the data
+				logger.info("User Not Exists So Adding Them");
+				//and saves in local variable
+				local = userdetailrepository.save(user);
+			}
+		}
+		catch(Exception e) {
+			//catches any exception occurs
+			throw new Exception("User Already Exists");
+		}
 		return local;
 	}
 	
@@ -64,6 +92,12 @@ public class CustomUserService implements UserDetailsService{
 	public User getById(int id) {
 		Optional<User> option = userdetailrepository.findById(id);
 		return (option.get());
+	}
+	
+	//To Get All Users
+	public List<User> getUsers(){
+		List<User> user = userdetailrepository.findAll();
+		return user;
 	}
 	
 	//Update Method To Update User Information
