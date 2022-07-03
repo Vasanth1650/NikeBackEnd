@@ -54,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				"/addnew/updateuser/{id}","/charging/{id}","/totalproducts/category/{category1}","/totalproducts/collection/{collection}","/totalproducts/gender/{gender}","/totalproducts/addproducts","/totalproducts/{id}","/totalproducts/delete/{id}","/totalproducts/updateProduct",
 				"/charging/checkout","/totalproducts/name/{productname}","/wishlist/addwishlist","/wishlist/{id}","/wishlist/userid/{userid}","/wishlist/product/{productid}","/wishlist/username/{username}"
 				,"/addnew/findby/{username}","/ordered/generateorder","/ordered/getbyuserid/{userid}","/product/gender/{gender}","/ordered/updateOrder/{id}","/ordered/viewallproducts","/ordered/{id}","/charging/delete/{userid}","/charging/{userid}",
-				"/product/update/{id}"	,	"/refund/refunding/{userid}","/refund/viewerequest","/refund/{id}","/refund/refundcollector","/refund/updaterefund/{id}").permitAll().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated())
+				"/product/update/{id}"	,	"/refund/refunding/{userid}","/refund/viewerequest","/refund/{id}","/refund/refundcollector","/refund/updaterefund/{id}","/wishlist/productid/{productid}").permitAll().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated())
 		.addFilterBefore(new JWTAuthenticationFilter(userservice,jwtTokenHelper),UsernamePasswordAuthenticationFilter.class);
 		
 		

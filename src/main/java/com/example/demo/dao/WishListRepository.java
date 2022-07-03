@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +16,10 @@ public interface WishListRepository extends JpaRepository<WishList,Integer>{
 	List<WishList> findByProductid(String productid);
 
 	List<WishList> findByUsername(String username);
+
+	WishList save(HashMap<String, String> map);
+
+	List<WishList> findByProductid(WishList wishList);
 	
 
 

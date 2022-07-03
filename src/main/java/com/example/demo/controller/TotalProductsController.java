@@ -48,7 +48,7 @@ public class TotalProductsController {
 	}
 	
 	@GetMapping("/name/{productname}")
-	public ResponseEntity<List<TotalProducts>> findByProductname(@PathVariable String productname) {
+	public ResponseEntity<List<TotalProducts>> findByProductname(@PathVariable String productname) throws Exception {
 		return ResponseEntity.ok(service.getProductname(productname));
 	}
 	
@@ -63,7 +63,7 @@ public class TotalProductsController {
 	}
 	
 	@GetMapping("/category/{category1}")
-	public ResponseEntity<List<TotalProducts>> findByCatesgory(@PathVariable String category1){
+	public ResponseEntity<List<TotalProducts>> findByCatesgory(@PathVariable String category1) throws Exception{
 		return ResponseEntity.ok(service.getCategory1(category1));
 	}
 	

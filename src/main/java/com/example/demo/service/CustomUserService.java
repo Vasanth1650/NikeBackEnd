@@ -43,7 +43,7 @@ public class CustomUserService implements UserDetailsService{
 	
 	//findbyUsername Method
 	public User getByUsername(String username) throws Exception {
-		//checks if any usernaem exists
+		//checks if any username exists
 		User user = userdetailrepository.findByUsername(username);
 		try {
 			if(user==null) {
@@ -90,12 +90,14 @@ public class CustomUserService implements UserDetailsService{
 	
 	//To Get Particular User By Id
 	public User getById(int id) {
+		logger.fatal("Getting Info Of The User :"+id);
 		Optional<User> option = userdetailrepository.findById(id);
 		return (option.get());
 	}
 	
 	//To Get All Users
 	public List<User> getUsers(){
+		logger.fatal("Values Are Getting For Security");
 		List<User> user = userdetailrepository.findAll();
 		return user;
 	}
