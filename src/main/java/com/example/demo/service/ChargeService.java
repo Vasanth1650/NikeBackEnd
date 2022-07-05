@@ -25,7 +25,7 @@ public class ChargeService {
 	
 	
 	//Adding Cart Items
-	public Charge addCharge(Charge charge){
+	public Charge addCharge(Charge charge) throws Exception{
 		//logger Get's The Info Of Every New Object Added 
 		try {
 			if(charge==null) {
@@ -39,7 +39,7 @@ public class ChargeService {
 			}
 		}catch(Exception e) {
 			//Catch The Exception In Try Catch
-			System.out.println("Something Went While Adding Data....");
+			throw new Exception("Something Went While Adding Data....");
 		}
 		return repository.save(charge);
 	}
@@ -64,7 +64,7 @@ public class ChargeService {
 	
 	
 	//Delete If User Don’t Wanna Add Item In Checkout
-	public void deleteByIdTo(int id) {
+	public void deleteByIdTo(int id) throws Exception {
 		Charge m = repository.findById(id).get();
 		try {
 			if(m==null) {
@@ -78,7 +78,7 @@ public class ChargeService {
 		}catch(Exception e){
 			//Gives The Log For Accessing UnKnown Object
 			logger.error("Unable To Delete The Unpresent Object");
-			System.out.println("User Trying To Delete The Unknown Element");
+			throw new Exception("User Trying To Delete The Unknown Element");
 		}
 		
 	}

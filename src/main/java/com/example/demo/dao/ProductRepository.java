@@ -20,5 +20,7 @@ public interface ProductRepository extends JpaRepository<Product,Integer>{
 	//The Are Multiple Gender Which Helps To Retrive Multiple Object According To The Gender Type
 	List<Product> findByGender(String gender);
 
+	List<Product> findByCategory1(String category1);
+
 
 }

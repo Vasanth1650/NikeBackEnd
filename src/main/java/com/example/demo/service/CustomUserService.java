@@ -7,7 +7,6 @@
 package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.dao.UserDetailsRepository;
 import com.example.demo.model.User;
 
@@ -97,6 +95,7 @@ public class CustomUserService implements UserDetailsService{
 	
 	//To Get All Users
 	public List<User> getUsers(){
+		//Data breach may occur user data may be stolen
 		logger.fatal("Values Are Getting For Security");
 		List<User> user = userdetailrepository.findAll();
 		return user;

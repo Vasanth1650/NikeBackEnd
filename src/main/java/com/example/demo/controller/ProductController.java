@@ -44,6 +44,11 @@ public class ProductController {
 		service.deleteById(id);
 	}
 	
+	@GetMapping("/productunder/{category1}")
+	public List<Product> findByCategory1(@PathVariable String category1){
+		return service.getByCategory(category1);
+	}
+	
 	@GetMapping("/gender/{gender}")
 	public List<Product> findByGender(@PathVariable String gender){
 		return service.getByGender(gender);

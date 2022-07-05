@@ -26,7 +26,7 @@ public class ChargeController{
 	
 	
 	@PostMapping("/checkout")
-	public Charge adder(@RequestBody Charge charge) {
+	public Charge adder(@RequestBody Charge charge) throws Exception {
 		return service.addCharge(charge);
 	}
 	
@@ -41,7 +41,7 @@ public class ChargeController{
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteById(@PathVariable int id) {
+	public void deleteById(@PathVariable int id) throws Exception {
 		service.deleteByIdTo(id);
 	}
 	

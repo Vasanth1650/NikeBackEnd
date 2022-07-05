@@ -87,6 +87,12 @@ public class ProductService {
 		return repository.findByGender(gender);
 	}
 	
+	//Product Picking Under The Category1
+	public List<Product> getByCategory(String category1){
+		logger.info("Geeting Products Under The Category In ProductTable:"+category1);
+		return repository.findByCategory1(category1);
+	}
+	
 	//Update The Already Exists object
 	public Product updateProduct(int id,Product product) throws Exception {
 		//Checks Whether The Product Exists

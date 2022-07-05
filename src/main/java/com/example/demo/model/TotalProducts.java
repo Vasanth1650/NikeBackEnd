@@ -63,6 +63,33 @@ public class TotalProducts {
 	@Column(length=1500)
 	private String image3;
 	
+	@Column(length=1500)
+	private String image4;
+	
+	@Column(length=1500)
+	private String image5;
+	
+	@Column(length=1500)
+	private String image6;
+	
+	@Column(length=1500)
+	private String image7;
+	
+	@Column(length=1500)
+	private String image8;
+	
+	@Column(length=1500)
+	private String image9;
+	
+	@Column(length=1500)
+	private String image10;
+	
+	@Column(length=1500)
+	private String image11;
+	
+	@Column(length=1500)
+	private String image12;
+	
 	private String category1;
 	
 	private String category2;
@@ -78,9 +105,81 @@ public class TotalProducts {
 	private String collection;
 	
 	//Getters And Setters
-
+		
 	public String getCollection() {
 		return collection;
+	}
+
+	public String getImage4() {
+		return image4;
+	}
+
+	public void setImage4(String image4) {
+		this.image4 = image4;
+	}
+
+	public String getImage5() {
+		return image5;
+	}
+
+	public void setImage5(String image5) {
+		this.image5 = image5;
+	}
+
+	public String getImage6() {
+		return image6;
+	}
+
+	public void setImage6(String image6) {
+		this.image6 = image6;
+	}
+
+	public String getImage7() {
+		return image7;
+	}
+
+	public void setImage7(String image7) {
+		this.image7 = image7;
+	}
+
+	public String getImage8() {
+		return image8;
+	}
+
+	public void setImage8(String image8) {
+		this.image8 = image8;
+	}
+
+	public String getImage9() {
+		return image9;
+	}
+
+	public void setImage9(String image9) {
+		this.image9 = image9;
+	}
+
+	public String getImage10() {
+		return image10;
+	}
+
+	public void setImage10(String image10) {
+		this.image10 = image10;
+	}
+
+	public String getImage11() {
+		return image11;
+	}
+
+	public void setImage11(String image11) {
+		this.image11 = image11;
+	}
+
+	public String getImage12() {
+		return image12;
+	}
+
+	public void setImage12(String image12) {
+		this.image12 = image12;
 	}
 
 	public void setCollection(String collection) {
