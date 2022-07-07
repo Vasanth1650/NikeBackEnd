@@ -51,10 +51,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.authenticationEntryPoint(authenticationEntryPoint).and()
 		.authorizeRequests(request->request.antMatchers("h2-console/**","/search/add","/api/v1/auth/login","api/v1/auth/dashbord","/auth/userinfo","/users/addUser","/users/addAuthority","/users/addAuth"
 				,"/product/save","/product/{id}","/product/delete/{id}","/product/allproducts","/totalproducts/addproducts","/product/updateProduct/{id}","/addnew/save","/addnew/{id}","/totalproducts/allproducts",
-				"/addnew/updateuser/{id}","/charging/{id}","/totalproducts/category/{category1}","/totalproducts/collection/{collection}","/totalproducts/gender/{gender}","/totalproducts/addproducts","/totalproducts/{id}","/totalproducts/delete/{id}","/totalproducts/updateProduct/{id}",
+				"/addnew/updateuser/{id}","/charging/{id}","/totalproducts/category/{category1}","/totalproducts/collection/{collection}","/totalproducts/gender/{gender}","/totalproducts/addproducts","/totalproducts/{id}","/totalproducts/delete/{id}",
+				"/totalproducts/updateProduct/{id}",
 				"/charging/checkout","/totalproducts/name/{productname}","/wishlist/addwishlist","/wishlist/{id}","/wishlist/userid/{userid}","/wishlist/product/{productid}","/wishlist/username/{username}"
 				,"/addnew/findby/{username}","/ordered/generateorder","/ordered/getbyuserid/{userid}","/product/gender/{gender}","/ordered/updateOrder/{id}","/ordered/viewallproducts","/ordered/{id}","/charging/delete/{userid}","/charging/{userid}",
-				"/product/update/{id}"	,	"/refund/refunding/{userid}","/refund/viewerequest","/refund/{id}","/refund/refundcollector","/refund/updaterefund/{id}","/wishlist/productid/{productid}","/normalwishing/addwishlist","/normalwishing/{id}",
+				"/product/update/{id}","/actuator/**","/refund/refunding/{userid}","/refund/viewerequest","/refund/{id}","/refund/refundcollector","/refund/updaterefund/{id}","/wishlist/productid/{productid}","/normalwishing/addwishlist","/normalwishing/{id}",
 				"/product/productunder/{category1}","/normalwishing/username/{username}","/normalwishing/userid/{userid}","/normalwishing/productid/{productid}","/normalwishing/{id}","/subscription/addSubs","/subscription/allSubs","/plan/addPlan","/plan/allPlans",
 				"/livechat/getByTunnelId/{tunnelid}","/livechat/getAllId","/livechat/deletetunnel/{tunnelid}","/livechat/addnewrequest").permitAll().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().anyRequest().authenticated())
 		.addFilterBefore(new JWTAuthenticationFilter(userservice,jwtTokenHelper),UsernamePasswordAuthenticationFilter.class);

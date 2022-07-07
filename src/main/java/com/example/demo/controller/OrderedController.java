@@ -46,7 +46,7 @@ public class OrderedController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void Deleting(@PathVariable int id) {
+	public void deleting(@PathVariable int id) {
 		service.deleteById(id);
 	}
 	

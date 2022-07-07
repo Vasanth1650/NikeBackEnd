@@ -35,7 +35,7 @@ public class ChargeService {
 			}
 			else {
 				//On Succesful Receiving Object Log The Data
-				logger.info("Data Addedd Successfull "+charge);
+				logger.info("Data Addedd Successfull ",charge);
 			}
 		}catch(Exception e) {
 			//Catch The Exception In Try Catch
@@ -48,7 +48,7 @@ public class ChargeService {
 	//Getting Particular Item Of User Cart Items
 	public List<Charge> getById(int userid){
 		//logger Get's The Info Of The Particular Record Picking
-		logger.info("The Particular Data Picking For The Particular User "+userid);
+		logger.info("The Particular Data Picking For The Particular User ",userid);
 		return repository.findByUserid(userid);
 	}
 	
@@ -57,7 +57,7 @@ public class ChargeService {
 	@Transactional
 	public List<Charge> deleteById(int userid) {
 		//Logger Warns The Data From The Database Getting Deleted For The Particular UserId
-		logger.warn("After Checking Out The Object From The Checkout Is Deleted According To UserID "+userid);
+		logger.warn("After Checking Out The Object From The Checkout Is Deleted According To UserID ",userid);
 		return repository.deleteByUserid(userid);
 	}
 	

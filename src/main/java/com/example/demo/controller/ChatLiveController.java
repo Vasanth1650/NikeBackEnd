@@ -23,8 +23,6 @@ public class ChatLiveController {
 	@Autowired
 	private ChatLiveService service;
 	
-	
-	
 	@PostMapping("/addnewrequest")
 	public ChatLive addNewChat(@RequestBody ChatLive chat) {
 		return service.addChat(chat);
@@ -36,7 +34,7 @@ public class ChatLiveController {
 	}
 	
 	@GetMapping("/getAllId")
-	public List<ChatLive> AllLives(){
+	public List<ChatLive> allLives(){
 		return service.getAllLives();
 	}
 	

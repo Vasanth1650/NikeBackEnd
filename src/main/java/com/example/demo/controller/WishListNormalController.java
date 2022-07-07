@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.model.WishList;
 import com.example.demo.model.WishListNormal;
 import com.example.demo.service.WishListNormalService;
 
@@ -25,7 +23,7 @@ public class WishListNormalController {
 	public WishListNormalService service;
 	
 	@PostMapping("/addwishlist")
-	public WishListNormal Adder(@RequestBody WishListNormal wish) throws Exception {
+	public WishListNormal adder(@RequestBody WishListNormal wish) throws Exception {
 		return service.adding(wish);
 	}
 	

@@ -35,7 +35,7 @@ public class WishListService {
 		//Creating A Variable To Count The Particular ProductId Under A Particular Userid
 		int count = 0;
 		//List Used To Get Information Of Productid Which IS Going To Store With Userid
-		logger.info("Entering Wishlist Gateway....."+wish);
+		logger.info("Entering Wishlist Gateway.....",wish);
 		List<WishList> productid = repository.findByProductid(wish.getProductid());
 		//Iterator To Run Through The productid
 		Iterator<WishList> iterator = productid.iterator();
@@ -63,7 +63,7 @@ public class WishListService {
 
 	//Getting By Id
 	public WishList getById(int id) {
-		logger.info("Getting Particular Id In WIshList"+id);
+		logger.info("Getting Particular Id In WIshList",id);
 		Optional<WishList> wish = repository.findById(id);
 		return (wish.get());
 	}
@@ -76,7 +76,7 @@ public class WishListService {
 
 	//Getting List Under Username
 	public List<WishList> getByUsername(String username) {
-		logger.info("Getting Username Under WishList"+username);
+		logger.info("Getting Username Under WishList",username);
 		return repository.findByUsername(username);
 	}
 
@@ -88,7 +88,7 @@ public class WishListService {
 
 	//Deleting The Particular Wishlist Data In Wishlist
 	public void deleteById(int id) {
-		logger.warn("Deleteing From WishList"+id);
+		logger.warn("Deleteing From WishList",id);
 		repository.deleteById(id);
 	}
 

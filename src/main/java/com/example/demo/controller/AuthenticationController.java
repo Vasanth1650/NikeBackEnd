@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.NikeShopingApplication;
 import com.example.demo.config.JwtTokenHelper;
 import com.example.demo.model.User;
 import com.example.demo.response.AuthenticationRequest;
@@ -57,12 +55,6 @@ public class AuthenticationController {
 		
 		LoginResponse response=new LoginResponse();
 		response.setToken(jwtToken);
-		logger.debug("It is a debug logger.");
-		logger.error("It is an error logger.");
-		logger.fatal("It is a fatal logger.");
-		logger.info("It is a info logger.");
-		logger.trace("It is a trace logger.");
-		logger.warn("It is a warn logger.");
 		return ResponseEntity.ok(response);
 	}
 	

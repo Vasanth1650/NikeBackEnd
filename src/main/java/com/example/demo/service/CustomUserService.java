@@ -88,7 +88,7 @@ public class CustomUserService implements UserDetailsService{
 	
 	//To Get Particular User By Id
 	public User getById(int id) {
-		logger.fatal("Getting Info Of The User :"+id);
+		logger.warn("Getting Info Of The User :"+id);
 		Optional<User> option = userdetailrepository.findById(id);
 		return (option.get());
 	}

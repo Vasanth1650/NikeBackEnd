@@ -42,14 +42,14 @@ public class TotalProductServices {
 			if(list==null) {
 				//If List Empty
 				logger.error("No Items Found In TotalProducts Under Name"+productname);
-				throw new Exception("Catch ME");
+				throw new RuntimeException("Catch ME");
 			}else {
 				//If List Contains The Product
 				logger.info("Getting Product By Name :"+productname);
 			}
 		}catch(Exception e) {
 			//Catches The Exception
-			throw new Exception("Error Occured In Total Get ProductName"+productname);
+			throw new RuntimeException("Error Occured In Total Get ProductName"+productname);
 		}
 		//Returns The List 
 		return list;

@@ -36,7 +36,7 @@ public class ChargeController{
 	}
 		
 	@DeleteMapping("/delete/{userid}")
-	public List<Charge> CheckoutDelete(@PathVariable int userid) {
+	public List<Charge> checkoutDelete(@PathVariable int userid) {
 		return service.deleteById(userid);
 	}
 	

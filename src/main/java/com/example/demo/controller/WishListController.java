@@ -24,7 +24,7 @@ public class WishListController {
 	private WishListService service;
 	
 	@PostMapping("/addwishlist")
-	public WishList Adder(@RequestBody WishList wish) throws Exception {
+	public WishList adder(@RequestBody WishList wish) throws Exception {
 		return service.adding(wish);
 	}
 	

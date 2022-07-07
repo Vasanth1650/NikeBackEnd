@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.WishListNormalRepository;
-import com.example.demo.model.WishList;
 import com.example.demo.model.WishListNormal;
 
 @Service
@@ -30,7 +29,7 @@ public class WishListNormalService {
 			//Creating A Variable To Count The Particular ProductId Under A Particular Userid
 			int count = 0;
 			//List Used To Get Information Of Productid Which IS Going To Store With Userid
-			logger.info("Entering Wishlist Gateway....."+wish);
+			logger.info("Entering Wishlist Gateway.....",wish);
 			List<WishListNormal> productid = repository.findByProductid(wish.getProductid());
 			//Iterator To Run Through The productid
 			Iterator<WishListNormal> iterator = productid.iterator();
@@ -58,7 +57,7 @@ public class WishListNormalService {
 
 		//Getting By Id
 		public WishListNormal getById(int id) {
-			logger.info("Getting Particular Id In WIshList"+id);
+			logger.info("Getting Particular Id In WIshList",id);
 			Optional<WishListNormal> wish = repository.findById(id);
 			return (wish.get());
 		}
@@ -71,7 +70,7 @@ public class WishListNormalService {
 
 		//Getting List Under Username
 		public List<WishListNormal> getByUsername(String username) {
-			logger.info("Getting Username Under WishList"+username);
+			logger.info("Getting Username Under WishList",username);
 			return repository.findByUsername(username);
 		}
 
@@ -83,7 +82,7 @@ public class WishListNormalService {
 
 		//Deleting The Particular Wishlist Data In Wishlist
 		public void deleteById(int id) {
-			logger.warn("Deleteing From WishList"+id);
+			logger.warn("Deleteing From WishList",id);
 			repository.deleteById(id);
 		}
 

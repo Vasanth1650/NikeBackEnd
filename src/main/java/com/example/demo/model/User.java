@@ -14,7 +14,6 @@ package com.example.demo.model;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Convert;
@@ -26,7 +25,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -78,7 +76,6 @@ public class User implements UserDetails{
 
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public User(int i, String username, String password, String email, String phonenumber, String address, String state,String city,
