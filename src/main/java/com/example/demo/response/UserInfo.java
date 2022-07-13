@@ -14,7 +14,7 @@ public class UserInfo {
 	private String address;
 	private String state;
 	private String city;
-	
+	private String subscription;
 	private Object roles;
 	
 	
@@ -47,6 +47,16 @@ public class UserInfo {
 
 	public String getUsername() {
 		return username;
+	}
+	
+	
+
+	public String getSubscription() {
+		return subscription;
+	}
+
+	public void setSubscription(String subscription) {
+		this.subscription = subscription;
 	}
 
 	public void setUsername(String username) {

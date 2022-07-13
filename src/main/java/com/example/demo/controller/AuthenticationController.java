@@ -72,6 +72,7 @@ public class AuthenticationController {
 		userInfo.setRoles(userObj.getAuthorities().toArray());
 		userInfo.setAddress(userObj.getAddress());
 		userInfo.setCity(userObj.getCity());
+		userInfo.setSubscription(userObj.getSubscription());
 		userInfo.setState(userObj.getState());
 		return ResponseEntity.ok(userInfo);	
 		

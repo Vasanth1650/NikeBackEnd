@@ -109,6 +109,11 @@ public class CustomUserService implements UserDetailsService{
 		}
 		return userdetailrepository.save(user);
 	}
+	
+	//updateUser adder
+	public User updateAdder(User user) {
+		return userdetailrepository.save(user);
+	}
 
 }
 	

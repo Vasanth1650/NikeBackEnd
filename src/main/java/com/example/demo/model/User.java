@@ -22,6 +22,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -62,6 +64,7 @@ public class User implements UserDetails{
 
 	private String city;
 	
+	private String subscription = "No Subscription";
 	
 	private boolean enabled=true;
 	
@@ -121,9 +124,20 @@ public class User implements UserDetails{
 	public int getId() {
 		return id;
 	}
+	
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+
+	public String getSubscription() {
+		return subscription;
+	}
+
+	public void setSubscription(String subscription) {
+		this.subscription = subscription;
 	}
 
 	public String getEmail() {

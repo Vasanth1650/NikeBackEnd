@@ -21,6 +21,7 @@ public class ChargeService {
 	@Autowired
 	private ChargeRepository repository;
 	
+	//Logger
 	Logger logger = LogManager.getLogger(ChargeService.class);
 	
 	

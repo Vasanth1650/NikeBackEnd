@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,7 +22,6 @@ import com.example.demo.service.CustomUserService;
 @RequestMapping("/addnew")
 @RestController
 @CrossOrigin
-@Component
 public class AddUserController {
 	
 	@Autowired
@@ -53,8 +53,9 @@ public class AddUserController {
 		users.setCity(user.getCity());
 		users.setState(user.getState());
 		users.setEmail(user.getEmail());
-		users.setAuthorities((List<Authority>) user.getAuthorities());
-		User update = customservice.addUser(users);
+		
+		users.setSubscription(user.getSubscription());
+		User update = customservice.updateAdder(users);
 		return ResponseEntity.ok(update);
 	}
 

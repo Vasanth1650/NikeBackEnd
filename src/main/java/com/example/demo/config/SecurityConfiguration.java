@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.authorizeRequests(request->request.antMatchers("h2-console/**","/search/add","/api/v1/auth/login","api/v1/auth/dashbord","/auth/userinfo","/users/addUser","/users/addAuthority","/users/addAuth"
 				,"/product/save","/product/{id}","/product/delete/{id}","/product/allproducts","/totalproducts/addproducts","/product/updateProduct/{id}","/addnew/save","/addnew/{id}","/totalproducts/allproducts",
 				"/addnew/updateuser/{id}","/charging/{id}","/totalproducts/category/{category1}","/totalproducts/collection/{collection}","/totalproducts/gender/{gender}","/totalproducts/addproducts","/totalproducts/{id}","/totalproducts/delete/{id}",
-				"/totalproducts/updateProduct/{id}",
+				"/totalproducts/updateProduct/{id}","/memberacess/**",
 				"/charging/checkout","/totalproducts/name/{productname}","/wishlist/addwishlist","/wishlist/{id}","/wishlist/userid/{userid}","/wishlist/product/{productid}","/wishlist/username/{username}"
 				,"/addnew/findby/{username}","/ordered/generateorder","/ordered/getbyuserid/{userid}","/product/gender/{gender}","/ordered/updateOrder/{id}","/ordered/viewallproducts","/ordered/{id}","/charging/delete/{userid}","/charging/{userid}",
 				"/product/update/{id}","/actuator/**","/refund/refunding/{userid}","/refund/viewerequest","/refund/{id}","/refund/refundcollector","/refund/updaterefund/{id}","/wishlist/productid/{productid}","/normalwishing/addwishlist","/normalwishing/{id}",
