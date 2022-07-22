@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.exceptions.ResourceNotFoundException;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -50,15 +48,10 @@ public class JwtTokenHelper {
 	        try {
 	            final Claims claims = this.getAllClaimsFromToken(token);
 	            
-	            if(claims==null) {
-	            	throw new ResourceNotFoundException("Catch");
-	            }
-	            
 	            username = claims.getSubject();
 	            
 	        } catch (Exception e) {
-	            
-	            throw new ResourceNotFoundException("Not Found Anything");
+	            username = null;
 	        }
 	        return username;
 	 }
@@ -97,13 +90,11 @@ public class JwtTokenHelper {
 		 Date expireDate;
 	        try {
 	            final Claims claims = this.getAllClaimsFromToken(token);
-	            if(claims==null) {
-	            	throw new ResourceNotFoundException("Catchs Me");
-	            }
+	            
 	            expireDate = claims.getExpiration();
 	            
 	        } catch (Exception e) {
-	        	throw new ResourceNotFoundException("Not Found");
+	        	expireDate = null;
 	        }
 	        return expireDate;
 	}
@@ -113,13 +104,9 @@ public class JwtTokenHelper {
 	        Date issueAt;
 	        try {
 	            final Claims claims = this.getAllClaimsFromToken(token);
-	            if(claims==null) {
-	            	throw new ResourceNotFoundException("Catch Me");
-	            }
 	            issueAt = claims.getIssuedAt();
 	        } catch (Exception e) {
-	            
-	            throw new ResourceNotFoundException("Not Found");
+	            issueAt = null;
 	        }
 	        return issueAt;
 	  }
