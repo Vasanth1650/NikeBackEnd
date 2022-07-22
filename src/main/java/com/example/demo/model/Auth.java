@@ -56,7 +56,7 @@ public class Auth {
 		this.authorities_id = authorities_id;
 	}
 	
-	//Super Constructor To Refer To The Base Class
+	//no arg Constructor To Refer To The Base Class
 	public Auth() {
 		super();
 	}

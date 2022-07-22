@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.dto.TotalProductsDto;
 import com.example.demo.model.TotalProducts;
 
 @Repository
@@ -27,5 +28,7 @@ public interface TotalProductRepository extends JpaRepository<TotalProducts,Inte
 
 	//There Will Be A Particular Products Under A Certain Collection 
 	List<TotalProducts> findByCollection(String collection);
+
+	TotalProducts save(TotalProductsDto product);
 
 }

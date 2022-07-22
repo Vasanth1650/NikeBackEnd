@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.ChatLive;
+import com.example.demo.dto.ChatLiveDto;
+
 import com.example.demo.service.ChatLiveService;
 
 @RestController
@@ -25,7 +25,7 @@ public class ChatLiveController {
 	private ChatLiveService service;
 	
 	@PostMapping("/addnewrequest")
-	public ChatLive addNewChat(@RequestBody ChatLive chat) {
+	public ChatLiveDto addNewChat(@RequestBody ChatLiveDto chat) {
 		return service.addChat(chat);
 	}
 	
@@ -35,12 +35,12 @@ public class ChatLiveController {
 	}
 	
 	@GetMapping("/getAllId")
-	public List<ChatLive> allLives(){
+	public List<ChatLiveDto> allLives(){
 		return service.getAllLives();
 	}
 	
 	@GetMapping("/getByTunnelId/{tunnelid}")
-	public List<ChatLive> tunnelcheck(@PathVariable int tunnelid){
+	public List<ChatLiveDto> tunnelcheck(@PathVariable int tunnelid){
 		return service.getBytunnelId(tunnelid);
 	}
 	

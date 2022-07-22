@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,8 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.model.TotalProducts;
+import com.example.demo.dto.TotalProductsDto;
 import com.example.demo.service.TotalProductServices;
 
 @RestController
@@ -28,17 +25,17 @@ public class TotalProductsController {
 	
 	
 	@GetMapping("/allproducts")
-	public List<TotalProducts>allProducts(){
+	public List<TotalProductsDto>allProducts(){
 		return service.getProducts();
 	}
 	
 	@PostMapping("/addproducts")
-	public TotalProducts adding(@RequestBody TotalProducts particular) {
+	public TotalProductsDto adding(@RequestBody TotalProductsDto particular) {
 		return service.addProduct(particular);
 	}
 	
 	@GetMapping("/{id}")
-	public TotalProducts productsbyID(@PathVariable int id) {
+	public TotalProductsDto productsbyID(@PathVariable int id) {
 		return service.getProductbyId(id);
 	}
 	
@@ -49,28 +46,28 @@ public class TotalProductsController {
 	}
 	
 	@GetMapping("/name/{productname}")
-	public ResponseEntity<List<TotalProducts>> findByProductname(@PathVariable String productname) throws Exception {
+	public ResponseEntity<List<TotalProductsDto>> findByProductname(@PathVariable String productname){
 		return ResponseEntity.ok(service.getProductname(productname));
 	}
 	
 	@GetMapping("/gender/{gender}")
-	public ResponseEntity<List<TotalProducts>> findByGender(@PathVariable String gender){
+	public ResponseEntity<List<TotalProductsDto>> findByGender(@PathVariable String gender){
 		return ResponseEntity.ok(service.getGender(gender));
 	}
 	
 	@GetMapping("/collection/{collection}")
-	public ResponseEntity<List<TotalProducts>> findByCategory(@PathVariable String collection){
+	public ResponseEntity<List<TotalProductsDto>> findByCategory(@PathVariable String collection){
 		return ResponseEntity.ok(service.getCollection(collection));
 	}
 	
 	@GetMapping("/category/{category1}")
-	public ResponseEntity<List<TotalProducts>> findByCatesgory(@PathVariable String category1) throws Exception{
+	public ResponseEntity<List<TotalProductsDto>> findByCatesgory(@PathVariable String category1){
 		return ResponseEntity.ok(service.getCategory1(category1));
 	}
 	
 	@PutMapping("/updateProduct/{id}")
-	public ResponseEntity<TotalProducts> updateProduct(@PathVariable int id,@RequestBody TotalProducts product) {
-		TotalProducts products = service.getProductbyId(id);
+	public ResponseEntity<TotalProductsDto> updateProduct(@PathVariable int id,@RequestBody TotalProductsDto product) {
+		TotalProductsDto products = service.getProductbyId(id);
 		products.setProductname(product.getProductname());
 		products.setProductdescription(product.getProductdescription());
 		products.setPrice(product.getPrice());
@@ -101,7 +98,7 @@ public class TotalProductsController {
 		products.setCategory1(product.getCategory1());
 		products.setCategory2(product.getCategory2());
 		products.setCategory3(product.getCategory3());
-		TotalProducts updated = service.addProduct(products);
+		TotalProductsDto updated = service.addProduct(products);
 		return ResponseEntity.ok(updated);
 	}
 	

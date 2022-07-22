@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.dto.ChargeDto;
 import com.example.demo.model.Charge;
 
 @Repository
@@ -21,6 +22,8 @@ public interface ChargeRepository extends JpaRepository<Charge,Integer>{
 	//After The Cart Purchase The Item Must Be Removed From The Cart 
 	List<Charge> deleteAllById(int userid);
 
-	List<Charge> deleteByUserid(int userid);
+	List<ChargeDto> deleteByUserid(int userid);
+
+	Charge save(ChargeDto charge);
 
 }

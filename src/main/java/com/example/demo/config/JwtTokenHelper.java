@@ -5,9 +5,10 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import com.example.demo.exceptions.ResourceNotFoundException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -48,9 +49,16 @@ public class JwtTokenHelper {
 	        String username;
 	        try {
 	            final Claims claims = this.getAllClaimsFromToken(token);
+	            
+	            if(claims==null) {
+	            	throw new ResourceNotFoundException("Catch");
+	            }
+	            
 	            username = claims.getSubject();
+	            
 	        } catch (Exception e) {
-	            username = null;
+	            
+	            throw new ResourceNotFoundException("Not Found Anything");
 	        }
 	        return username;
 	 }
@@ -89,21 +97,29 @@ public class JwtTokenHelper {
 		 Date expireDate;
 	        try {
 	            final Claims claims = this.getAllClaimsFromToken(token);
+	            if(claims==null) {
+	            	throw new ResourceNotFoundException("Catchs Me");
+	            }
 	            expireDate = claims.getExpiration();
+	            
 	        } catch (Exception e) {
-	        	expireDate = null;
+	        	throw new ResourceNotFoundException("Not Found");
 	        }
 	        return expireDate;
 	}
 
 
-	public Date getIssuedAtDateFromToken(String token) throws NotFoundException{
+	public Date getIssuedAtDateFromToken(String token){
 	        Date issueAt;
 	        try {
 	            final Claims claims = this.getAllClaimsFromToken(token);
+	            if(claims==null) {
+	            	throw new ResourceNotFoundException("Catch Me");
+	            }
 	            issueAt = claims.getIssuedAt();
 	        } catch (Exception e) {
-	            issueAt = null;
+	            
+	            throw new ResourceNotFoundException("Not Found");
 	        }
 	        return issueAt;
 	  }

@@ -1,9 +1,6 @@
 package com.example.demo.controller;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.model.Charge;
+import com.example.demo.dto.ChargeDto;
 import com.example.demo.service.ChargeService;
 
 @RestController
@@ -27,22 +23,22 @@ public class ChargeController{
 	
 	
 	@PostMapping("/checkout")
-	public Charge adder(@RequestBody Charge charge) throws Exception {
+	public ChargeDto adder(@RequestBody ChargeDto charge){
 		return service.addCharge(charge);
 	}
 	
 	@GetMapping("/{userid}")
-	public ResponseEntity<List<Charge>> findByUserid(@PathVariable int userid){
+	public ResponseEntity<List<ChargeDto>> findByUserid(@PathVariable int userid){
 		return ResponseEntity.ok(service.getById(userid));
 	}
 		
 	@DeleteMapping("/delete/{userid}")
-	public List<Charge> checkoutDelete(@PathVariable int userid) {
+	public List<ChargeDto> checkoutDelete(@PathVariable int userid) {
 		return service.deleteById(userid);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteById(@PathVariable int id) throws Exception {
+	public void deleteById(@PathVariable int id){
 		service.deleteByIdTo(id);
 	}
 	

@@ -17,6 +17,24 @@ public class ChatLive {
 	private String username;
 	
 	private int tunnelid;
+	
+	
+
+	public ChatLive(int id, String username, int tunnelid) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.tunnelid = tunnelid;
+	}
+
+	
+
+	public ChatLive() {
+		
+		super();
+	}
+
+	
 
 	public int getId() {
 		return id;

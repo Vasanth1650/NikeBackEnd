@@ -14,6 +14,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.dao.RefundRepository;
+import com.example.demo.dto.RefundDto;
+import com.example.demo.mapper.RefundMapper;
 import com.example.demo.model.Refund;
 
 
@@ -30,45 +32,58 @@ public class RefundService {
 	private RefundRepository repository;
 	
 	
+	@Autowired
+	private RefundMapper mapper;
+	
+	
 	
 	//Add New Refund Details
-	public Refund addRefundDetails(Refund refund) {
+	public RefundDto addRefundDetails(RefundDto refund) {
 		//Adding New Refund Status
 		logger.info("New Details Added For The Refund");
-		return repository.save(refund);
+		Refund refunds = mapper.toRefund(refund);
+		refunds = repository.save(refunds);
+		return mapper.toRefundDto(refunds);
 	}
 	
 	//Get Refund Order By Id
-	public Refund getById(int id) {
+	public RefundDto getById(int id) {
 		//Getting Refund Details By Particular Id
-		logger.info("Refund Id Is Getting :"+id);
+		logger.info("Refund Id Is Getting :");
 		Optional<Refund> refund = repository.findById(id);
-		return (refund.get());
+		Refund list = null;
+		if(refund.isPresent()) {
+			list = (refund.get());
+		}
+		return mapper.toRefundDto(list);
 	}
 	
 	//Getting Refund For The Particular User
-	public List<Refund> getByUserid(int userid){
+	public List<RefundDto> getByUserid(int userid){
 		//Getting Particular Refund Status For Userid
-		logger.warn("Refund UserID Is Getting"+userid);
-		return repository.findByUserid(userid);
+		logger.warn("Refund UserID Is Getting");
+		List<Refund>refund = repository.findByUserid(userid);
+		return mapper.toRefundDtos(refund);
 	}
 	
 	//Getting All Refund Details
-	public List<Refund> getAllRefund(){
+	public List<RefundDto> getAllRefund(){
 		//Getting All Refund Details
 		logger.warn("Getting All refund Details");
-		return repository.findAll();
+		List<Refund>refund = repository.findAll();
+		return mapper.toRefundDtos(refund);
 	}
 	
 	//Updating Refund Details
-	public Refund updateStatusRefund(int id,Refund refund) {
+	public RefundDto updateStatusRefund(RefundDto refund) {
 		//Checking Whether The Particular Id Exist To Update
 		if(getById(refund.getId())==null) {
-			logger.error("Not Found Refund Details Of Id"+id);
+			logger.error("Not Found Refund Details Of Id");
 			return null;
 		}
 		//Returns The Update
-		return repository.save(refund);
+		Refund refunds = repository.save(refund);
+		return mapper.toRefundDto(refunds);
 	}
 
 }

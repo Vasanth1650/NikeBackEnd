@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ChatLiveRepository;
+import com.example.demo.dto.ChatLiveDto;
+import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.mapper.ChatLiveMapper;
 import com.example.demo.model.ChatLive;
 
 @Service
@@ -18,20 +21,26 @@ public class ChatLiveService {
 	@Autowired
 	private ChatLiveRepository repository;
 	
+	@Autowired
+	private ChatLiveMapper mapper;
+	
 	Logger logger = LogManager.getLogger(ChatLiveService.class);
 	
-	public ChatLive addChat(ChatLive chat) {
+	public ChatLiveDto addChat(ChatLiveDto chat) {
 		try {
 			if(chat!=null) {
 				logger.info("A New Chat Tunnel Has Been Created");
 			}else {
 				logger.error("Error Creating Tunnel");
-				throw new Exception("Catch Me");
+				throw new ResourceNotFoundException("Catch Me");
 			}
 		}catch(Exception e) {
-			throw new RuntimeException("Something Went Wrong While Creating Tunnel");
+			throw new ResourceNotFoundException("Something Went Wrong While Creating Tunnel");
 		}
-		return repository.save(chat);
+		ChatLive chating = mapper.toChatLive(chat);
+		chating = repository.save(chating);
+		
+		return mapper.toChatLiveDto(chating);
 	}
 	
 	
@@ -40,13 +49,18 @@ public class ChatLiveService {
 		repository.deleteByTunnelid(tunnelid);
 	}
 	
-	public List<ChatLive> getAllLives(){
-		return repository.findAll();
+	public List<ChatLiveDto> getAllLives(){
+		List<ChatLive> live = repository.findAll();
+		return mapper.toChatLiveDtos(live);
 	}
 	
-	public List<ChatLive> getBytunnelId(int tunnelid){
-		return repository.findByTunnelid(tunnelid);
+	public List<ChatLiveDto> getBytunnelId(int tunnelid){
+		List<ChatLive> live = repository.findByTunnelid(tunnelid);
+		return mapper.toChatLiveDtos(live);
 	}
+
+
+	
 	
 	
 	

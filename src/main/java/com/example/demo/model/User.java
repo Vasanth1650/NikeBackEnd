@@ -22,8 +22,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -81,10 +79,7 @@ public class User implements UserDetails{
 		super();
 	}
 
-	public User(int i, String username, String password, String email, String phonenumber, String address, String state,String city,
-			boolean b) {
-		
-	}
+	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

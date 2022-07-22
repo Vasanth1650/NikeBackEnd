@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.WishList;
+import com.example.demo.dto.WishListDto;
 import com.example.demo.service.WishListService;
 
 @RestController
@@ -24,27 +24,27 @@ public class WishListController {
 	private WishListService service;
 	
 	@PostMapping("/addwishlist")
-	public WishList adder(@RequestBody WishList wish) throws Exception {
+	public WishListDto adder(@RequestBody WishListDto wish){
 		return service.adding(wish);
 	}
 	
 	@GetMapping("/{id}")
-	public WishList findByIds(@PathVariable int id) {
+	public WishListDto findByIds(@PathVariable int id) {
 		return service.getById(id);
 	}
 	
 	@GetMapping("/username/{username}")
-	public List<WishList> findByUser(@PathVariable String name){
+	public List<WishListDto> findByUser(@PathVariable String name){
 		return service.getByUsername(name);
 	}
 	
 	@GetMapping("/userid/{userid}")
-	public List<WishList> findByUserid(@PathVariable String userid){
+	public List<WishListDto> findByUserid(@PathVariable String userid){
 		return service.getByUserid(userid);
 	}
 	
 	@GetMapping("/productid/{productid}")
-	public List<WishList> findByProductid(@PathVariable String productid) {
+	public List<WishListDto> findByProductid(@PathVariable String productid) {
 		return service.getByProductid(productid);
 	}
 	

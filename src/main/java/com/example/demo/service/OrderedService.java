@@ -12,7 +12,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.example.demo.dao.OrderedRepository;
+import com.example.demo.dto.OrderedDto;
+import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.mapper.OrderedMapper;
 import com.example.demo.model.Ordered;
 
 @Service
@@ -22,26 +26,32 @@ public class OrderedService {
 	@Autowired
 	private OrderedRepository repository;
 	
+	@Autowired
+	private OrderedMapper mapper;
+	
 	//Logger
 	Logger logger = LogManager.getLogger(OrderedService.class);
 	
 	
 	//Add Ordered Details
-	public Ordered addDetails(Ordered order) {
+	public OrderedDto addDetails(OrderedDto order) {
 		//Creating New Order
 		logger.info("New Order Has Been Placed");
-		return repository.save(order);
+		Ordered orders = mapper.toOrdered(order);
+		orders = repository.save(orders);
+		return mapper.toOrderedDto(orders);
 	}
 	
 	//View All The Orders
-	public List<Ordered> viewer(){
+	public List<OrderedDto> viewer(){
 		//Viewing All The Ordered Details
 		logger.warn("Viewing All Details");
-		return repository.findAll();
+		List<Ordered>list = repository.findAll();
+		return mapper.toOrderedDtos(list);
 	}
 	
 	//May Particular User Have Many Order So Viewing In List Of A Particular User
-	public List<Ordered> getByUserid(int userid) throws Exception{
+	public List<OrderedDto> getByUserid(int userid){
 		//One User Can Have Multiple Order Details So We Are Using List
 		List<Ordered>list = repository.findByUserid(userid);
 		try {
@@ -49,7 +59,7 @@ public class OrderedService {
 				//Checks Whether The List Of The Particular User Is Empty
 				logger.error("The User Has No Particular Orders");
 				//Throws Run Time Error
-				throw new RuntimeException("Check Me");
+				throw new ResourceNotFoundException("Check Me");
 			}
 			else {
 				//If User List Not Empty
@@ -57,10 +67,10 @@ public class OrderedService {
 			}
 		}catch(Exception e){
 			//Catch The Exception
-			throw new RuntimeException("No Order Yet Placed ");
+			throw new ResourceNotFoundException("No Order Yet Placed ");
 		}
 		//return The List
-		return list;
+		return mapper.toOrderedDtos(list);
 	}
 	
 	//This Used To Delete Order In Case Of Refund
@@ -71,21 +81,27 @@ public class OrderedService {
 	}
 	
 	//Getting Order By Particular Order Id
-	public Ordered getByIds(int id){
+	public OrderedDto getByIds(int id){
 		//Getting Particular Order By ID
 		logger.info("Picking up Ordered By ID");
 		Optional<Ordered>order = repository.findById(id);
-		return (order.get());
+		Ordered orders = null;
+		if(order.isPresent()) {
+			orders = order.get();
+		}
+		return mapper.toOrderedDto(orders);
 	}
 	
 	//Update The Particular Information Of The Order
-	public Ordered updateStatus(int id,Ordered order) {
+	public OrderedDto updateStatus(OrderedDto order) {
 		//Checking Whether The Id Exists TO Update
 		if(getByIds(order.getId())==null) {
 			return null;
 		}
+		Ordered orders = repository.save(order);
 		//Returns Saved Details
-		return repository.save(order);
+		
+		return mapper.toOrderedDto(orders);
 	}
 
 }

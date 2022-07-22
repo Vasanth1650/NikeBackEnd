@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.dto.OrderedDto;
 import com.example.demo.model.Ordered;
 
 
@@ -18,5 +19,7 @@ public interface OrderedRepository extends JpaRepository<Ordered,Integer>{
 
 	//To Find List Of Particular Users Order Here List Denotes The Particular User Can Have Multiple Orders
 	List<Ordered> findByUserid(int userid);
+
+	Ordered save(OrderedDto order);
 
 }

@@ -339,6 +339,9 @@ public class Product {
 		this.category3 = category3;
 	}
 			
+	public Product() {
+		super();
+	}
 	
 	
 }

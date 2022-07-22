@@ -8,10 +8,6 @@
  * @Table To The Particular Table For Operations
  * @author Vasanth
  */
- 
-
-
-
 
 package com.example.demo.model;
 
@@ -23,24 +19,22 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
-
 @Table(name = "authority")
 @Entity
-public class Authority implements GrantedAuthority{
-	
+public class Authority implements GrantedAuthority {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String roleCode;
-	
+
 	private String roleDescription;
-	
-	//Getters And Setters
-	
+
 	@Override
 	public String getAuthority() {
-		return roleCode;
+
+		return null;
 	}
 
 	public int getId() {
@@ -67,8 +61,11 @@ public class Authority implements GrantedAuthority{
 		this.roleDescription = roleDescription;
 	}
 
+	// Getters And Setters
 	
 	
-	
+	public Authority() {
+		super();
+	}
 
 }

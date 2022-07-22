@@ -2,7 +2,6 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.model.Product;
+import com.example.demo.dto.ProductDto;
 import com.example.demo.service.ProductService;
 
 @RestController
@@ -27,17 +25,17 @@ public class ProductController {
 	private ProductService service;
 	
 	@PostMapping("/save")
-	public Product saveProduct(@RequestBody Product product) {
+	public ProductDto saveProduct(@RequestBody ProductDto product) {
 		return service.addProduct(product);
 	}
 	
 	@GetMapping("/allproducts")
-	public List<Product> getAllProducts() throws Exception{
+	public List<ProductDto> getAllProducts(){
 		return service.getProducts();
 	}
 	
 	@GetMapping("/{id}")
-	public Product findProductById(@PathVariable int id) throws Exception{
+	public ProductDto findProductById(@PathVariable int id){
 		return service.getProductById(id);
 	}
 	
@@ -47,18 +45,18 @@ public class ProductController {
 	}
 	
 	@GetMapping("/productunder/{category1}")
-	public List<Product> findByCategory1(@PathVariable String category1){
+	public List<ProductDto> findByCategory1(@PathVariable String category1){
 		return service.getByCategory(category1);
 	}
 	
 	@GetMapping("/gender/{gender}")
-	public List<Product> findByGender(@PathVariable String gender){
+	public List<ProductDto> findByGender(@PathVariable String gender){
 		return service.getByGender(gender);
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Product>editProduct(@RequestBody Product product,@PathVariable int id) throws Exception{
-		Product products = service.getProductById(id);
+	public ResponseEntity<ProductDto>editProduct(@RequestBody ProductDto product,@PathVariable int id){
+		ProductDto products = service.getProductById(id);
 		products.setProductname(product.getProductname());
 		products.setProductdescription(product.getProductdescription());
 		products.setProductprice(product.getProductprice());
@@ -89,7 +87,7 @@ public class ProductController {
 		products.setCategory1(product.getCategory1());
 		products.setCategory2(product.getCategory2());
 		products.setCategory3(product.getCategory3());
-		Product updated = service.addProduct(products);
+		ProductDto updated = service.addProduct(products);
 		return ResponseEntity.ok(updated);
 	}
 	

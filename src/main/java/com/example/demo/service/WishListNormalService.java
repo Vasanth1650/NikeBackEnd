@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.WishListNormalRepository;
+import com.example.demo.dto.WishListNormalDto;
+import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.mapper.WishListNormalMapper;
 import com.example.demo.model.WishListNormal;
 
 @Service
@@ -22,14 +25,18 @@ public class WishListNormalService {
 	Logger logger = LogManager.getLogger(WishListNormalService.class);
 	
 	
+	@Autowired
+	private WishListNormalMapper mapper;
+	
+	
 	//Adding New WishList In Adding
-		public WishListNormal adding(WishListNormal wish) throws Exception{
+		public WishListNormalDto adding(WishListNormalDto wish){
 			//Creating a Null Variable To Store Value Later After Checking
-			WishListNormal wishing = null;
+			WishListNormal wishing = mapper.toWishList(wish);
 			//Creating A Variable To Count The Particular ProductId Under A Particular Userid
 			int count = 0;
 			//List Used To Get Information Of Productid Which IS Going To Store With Userid
-			logger.info("Entering Wishlist Gateway.....",wish);
+			logger.info("Entering Wishlist Gateway.....");
 			List<WishListNormal> productid = repository.findByProductid(wish.getProductid());
 			//Iterator To Run Through The productid
 			Iterator<WishListNormal> iterator = productid.iterator();
@@ -46,43 +53,50 @@ public class WishListNormalService {
 			//Checks After Iterator Gateway
 			if(count>=1) {
 				logger.error("The Item Already Exists In Wishlist");
-				throw new Exception("Already Exists");
+				throw new ResourceNotFoundException("Already Exists"+wish);
 			}else {
 				logger.info("New Item Added In WishList");
-				wishing = repository.save(wish);
+				wishing = repository.save(wishing);
 			}
 			//Return wishing
-			return wishing;
+			return mapper.toWishListNormalDto(wishing);
 		}
 
 		//Getting By Id
-		public WishListNormal getById(int id) {
-			logger.info("Getting Particular Id In WIshList",id);
+		public WishListNormalDto getById(int id) {
+			logger.info("Getting Particular Id In WIshList");
 			Optional<WishListNormal> wish = repository.findById(id);
-			return (wish.get());
+			WishListNormal list = null;
+			if(wish.isPresent()) {
+				list = wish.get();
+			}
+			return mapper.toWishListNormalDto(list);
 		}
 
 		//Getting By Userid
-		public List<WishListNormal> getByUserid(String userid) {
+		public List<WishListNormalDto> getByUserid(String userid) {
 			logger.info("Getting Particular List By Userid In Wish List");
-			return repository.findByUserid(userid);
+			List<WishListNormal>list = repository.findByUserid(userid);
+			return mapper.toUserDtos(list);
 		}
 
 		//Getting List Under Username
-		public List<WishListNormal> getByUsername(String username) {
-			logger.info("Getting Username Under WishList",username);
-			return repository.findByUsername(username);
+		public List<WishListNormalDto> getByUsername(String username) {
+			logger.info("Getting Username Under WishList");
+			List<WishListNormal>list =repository.findByUsername(username); 
+			return mapper.toUserDtos(list);
 		}
 
 		//Getting Product By Id In WishList
-		public List<WishListNormal> getByProductid(String productid) {
+		public List<WishListNormalDto> getByProductid(String productid) {
 			logger.info("Getting Product Id Under Wish List");
-			return repository.findByProductid(productid);
+			List<WishListNormal>list = repository.findByProductid(productid);
+			return mapper.toUserDtos(list);
 		}
 
 		//Deleting The Particular Wishlist Data In Wishlist
 		public void deleteById(int id) {
-			logger.warn("Deleteing From WishList",id);
+			logger.warn("Deleteing From WishList");
 			repository.deleteById(id);
 		}
 

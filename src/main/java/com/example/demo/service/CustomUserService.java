@@ -7,6 +7,7 @@
 package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import com.example.demo.dao.UserDetailsRepository;
+import com.example.demo.dto.UserDto;
+import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.model.User;
 
 
@@ -23,6 +28,9 @@ public class CustomUserService implements UserDetailsService{
 	
 	@Autowired
 	UserDetailsRepository userdetailrepository;
+	
+	@Autowired
+	private UserMapper mapper;
 	
 	Logger logger = LogManager.getLogger(CustomUserService.class);
 	
@@ -40,79 +48,85 @@ public class CustomUserService implements UserDetailsService{
 	}
 	
 	//findbyUsername Method
-	public User getByUsername(String username) throws Exception {
+	public UserDto getByUsername(String username){
 		//checks if any username exists
 		User user = userdetailrepository.findByUsername(username);
 		try {
 			if(user==null) {
 				//if not exists throws exception and log4j error
-				logger.error("No User Found.... "+username);
-				throw new Exception("Catch me");
+				logger.error("No User Found.... ");
+				throw new ResourceNotFoundException("Catch me");
 			}
-			if(user!=null) {
-				//if found shows the found value
-				logger.info("Username Found..."+username);
-			}
+			
 		}catch(Exception e){
 			//catches exception
-			logger.error("The Username Is Not Present... "+username);
-			throw new Exception("The Username Is Not Present...");
+			logger.error("The Username Is Not Present... ");
+			throw new ResourceNotFoundException("The Username Is Not Present...");
 		}
-		return user;
+		return mapper.toUserDto(user);
 	}
 	
 	
 	//To Add New User
-	public User addUser(User user) throws Exception {
+	public UserDto addUser(UserDto user)  {
 		//getting values locally if username is foundby
-		User local = this.userdetailrepository.findByUsername(user.getUsername());
+		User local = mapper.toUser(user);
+		User local1 = this.userdetailrepository.findByUsername(user.getUsername());
 		try {
-			if(local != null) {
+			if(local1 != null) {
 				//logger throws error message where the information of the user already exists and exception
 				logger.error("User Already Exists");
-				throw new Exception("Catch me");
+				throw new ResourceNotFoundException("Catch me");
 			}else {
 				//if not any saves the data
 				logger.info("User Not Exists So Adding Them");
 				//and saves in local variable
-				local = userdetailrepository.save(user);
+				local = userdetailrepository.save(local);
 			}
 		}
 		catch(Exception e) {
 			//catches any exception occurs
-			throw new Exception("User Already Exists");
+			throw new ResourceNotFoundException("User Already Exists");
 		}
-		return local;
+		return mapper.toUserDto(local);
 	}
 	
 	
 	//To Get Particular User By Id
-	public User getById(int id) {
-		logger.warn("Getting Info Of The User :"+id);
+	public UserDto getById(int id) {
+		logger.warn("Getting Info Of The User :");
 		Optional<User> option = userdetailrepository.findById(id);
-		return (option.get());
+		User user = null;
+		if(!option.isPresent()) {
+			throw new ResourceNotFoundException("User Id Not Present");
+		}
+		user = option.get();
+		return mapper.toUserDto(user);
 	}
 	
 	//To Get All Users
-	public List<User> getUsers(){
+	public List<UserDto> getUsers(){
 		//Data breach may occur user data may be stolen
 		logger.fatal("Values Are Getting For Security");
-		List<User> user = userdetailrepository.findAll();
-		return user;
+		List<User>list =  userdetailrepository.findAll();
+		return mapper.toUserDtos(list);
 	}
 	
 	//Update Method To Update User Information
-	public User updateUser(int id,User user) {
+	public UserDto updateUser(UserDto user) {
 		if(getById(user.getId())==null) {
 			logger.error("Id Not Found");
 			return null;
 		}
-		return userdetailrepository.save(user);
+		User list = userdetailrepository.save(user);
+		return mapper.toUserDto(list);
 	}
 	
 	//updateUser adder
-	public User updateAdder(User user) {
-		return userdetailrepository.save(user);
+	public UserDto updateAdder(UserDto user) {
+		User list = mapper.toUser(user);
+		list = userdetailrepository.save(list);
+		return mapper.toUserDto(list);
 	}
 
 }

@@ -1,11 +1,6 @@
 package com.example.demo.controller;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.model.Authority;
-import com.example.demo.model.User;
+import com.example.demo.dto.UserDto;
 import com.example.demo.service.CustomUserService;
 
 @RequestMapping("/addnew")
@@ -29,23 +22,23 @@ public class AddUserController {
 	
 	
 	@PostMapping("/save")
-	public User saveUser(@RequestBody User user) throws Exception {
+	public UserDto saveUser(@RequestBody UserDto user){
 		return customservice.addUser(user);
 	}
 	
 	@GetMapping("/{id}")
-	public User getting(@PathVariable int id) {
+	public UserDto getting(@PathVariable int id) {
 		return customservice.getById(id);
 	}
 	
 	@GetMapping("/findby/{username}")
-	public User getUserByName(@PathVariable String username) throws Exception{
+	public UserDto getUserByName(@PathVariable String username){
 		return customservice.getByUsername(username);
 	}
 	
 	@PutMapping("/updateuser/{id}")
-	public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable int id) throws Exception{
-		User users = customservice.getById(id);
+	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user,@PathVariable int id){
+		UserDto users = customservice.getById(id);
 		users.setUsername(user.getUsername());
 		users.setPassword(user.getPassword());
 		users.setPhonenumber(user.getPhonenumber());
@@ -53,9 +46,8 @@ public class AddUserController {
 		users.setCity(user.getCity());
 		users.setState(user.getState());
 		users.setEmail(user.getEmail());
-		
 		users.setSubscription(user.getSubscription());
-		User update = customservice.updateAdder(users);
+		UserDto update = customservice.updateAdder(users);
 		return ResponseEntity.ok(update);
 	}
 
