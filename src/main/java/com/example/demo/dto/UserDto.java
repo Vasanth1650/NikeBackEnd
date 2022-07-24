@@ -9,12 +9,14 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.demo.dao.AesEncryptor;
 import com.example.demo.model.Authority;
+import com.example.demo.model.Ordered;
 
 public class UserDto implements UserDetails{
 
@@ -49,6 +51,11 @@ public class UserDto implements UserDetails{
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinTable(name = "AUTH_USER_AUTHORITY", joinColumns = @JoinColumn(referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(referencedColumnName ="id"))
 	private List<Authority> authorities;
+	
+	
+	@OneToMany(targetEntity = Ordered.class,cascade = CascadeType.ALL)
+	@JoinColumn(name="userid",referencedColumnName = "id")
+	private List<Ordered> order;
 	
 	
 	

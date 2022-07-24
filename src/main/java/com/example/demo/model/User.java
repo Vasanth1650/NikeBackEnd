@@ -25,12 +25,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.demo.dao.AesEncryptor;
+
 
 
 @Table(name= "users" )
@@ -72,8 +74,27 @@ public class User implements UserDetails{
 	private List<Authority> authorities;
 	
 	
+	@OneToMany(targetEntity = Ordered.class,cascade = CascadeType.ALL)
+	@JoinColumn(name="userid",referencedColumnName = "id")
+	private List<Ordered> order;
+	
+	
+	
+	
 	
 	//Getters Ans Setters
+
+	public List<Ordered> getOrder() {
+		return order;
+	}
+
+
+
+	public void setOrder(List<Ordered> order) {
+		this.order = order;
+	}
+
+
 
 	public User() {
 		super();

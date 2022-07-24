@@ -6,6 +6,7 @@
 
 package com.example.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,7 @@ public class Ordered {
 	
 	private String productname;
 	
+	@Column(name="userid")
 	private int userid;
 	
 	private String status;

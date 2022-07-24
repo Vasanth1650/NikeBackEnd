@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.exceptions.ResourceNotFoundException;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -44,14 +46,15 @@ public class JwtTokenHelper {
 
 	
 	 public String getUsernameFromToken(String token) {
-	        String username;
+	        String username = null;
 	        try {
 	            final Claims claims = this.getAllClaimsFromToken(token);
-	            
-	            username = claims.getSubject();
+	            if(claims!=null) {
+	            	username = claims.getSubject();
+	            }
 	            
 	        } catch (Exception e) {
-	            username = null;
+	        	throw new ResourceNotFoundException("Got Its");
 	        }
 	        return username;
 	 }
@@ -82,31 +85,39 @@ public class JwtTokenHelper {
 	 
 	 public boolean isTokenExpired(String token) {
 		Date expireDate=getExpirationDate(token);
-		return expireDate.before(new Date());
+		Boolean m = false;
+		if(expireDate!=null) {
+			m = expireDate.before(new Date());
+		}
+		return m;
 	}
 
 
 	private Date getExpirationDate(String token) {
-		 Date expireDate;
+		 Date expireDate = null;
 	        try {
 	            final Claims claims = this.getAllClaimsFromToken(token);
-	            
-	            expireDate = claims.getExpiration();
+	            if(claims!=null) {
+	            	expireDate = claims.getExpiration();
+	            }
 	            
 	        } catch (Exception e) {
-	        	expireDate = null;
+	        	throw new ResourceNotFoundException("Got Itss");
 	        }
 	        return expireDate;
 	}
 
 
 	public Date getIssuedAtDateFromToken(String token){
-	        Date issueAt;
+	        Date issueAt = null;
 	        try {
 	            final Claims claims = this.getAllClaimsFromToken(token);
-	            issueAt = claims.getIssuedAt();
+	            if(claims!=null) {
+	            	issueAt = claims.getIssuedAt();
+	            }
+	            
 	        } catch (Exception e) {
-	            issueAt = null;
+	        	throw new ResourceNotFoundException("Got It");
 	        }
 	        return issueAt;
 	  }
