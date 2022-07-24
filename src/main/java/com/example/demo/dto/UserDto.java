@@ -59,7 +59,21 @@ public class UserDto implements UserDetails{
 	
 	
 	
+	
+	
 	//Getters Ans Setters
+
+	public List<Ordered> getOrder() {
+		return order;
+	}
+
+
+
+	public void setOrder(List<Ordered> order) {
+		this.order = order;
+	}
+
+
 
 	public UserDto() {
 		super();
