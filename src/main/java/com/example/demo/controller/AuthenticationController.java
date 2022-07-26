@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.config.JwtTokenHelper;
+import com.example.demo.model.Authority;
 import com.example.demo.model.User;
 import com.example.demo.response.AuthenticationRequest;
 import com.example.demo.response.LoginResponse;
 import com.example.demo.response.UserInfo;
+import com.example.demo.service.AuthorityService;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -41,6 +43,9 @@ public class AuthenticationController {
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private AuthorityService service;
 
 	@PostMapping("/auth/login")
 	public ResponseEntity<LoginResponse> login(@RequestBody AuthenticationRequest authenticationRequest)  {
@@ -63,6 +68,7 @@ public class AuthenticationController {
 	@GetMapping("/auth/userinfo")
 	public ResponseEntity<UserInfo> getUserInfo(Principal user){
 		User userObj=(User) userDetailsService.loadUserByUsername(user.getName());
+		Authority auth = service.getById(userObj.getId());
 		
 		UserInfo userInfo=new UserInfo();
 		userInfo.setId(userObj.getId());
@@ -70,6 +76,7 @@ public class AuthenticationController {
 		userInfo.setEmail(userObj.getEmail());
 		userInfo.setPhonenumber(userObj.getPhonenumber());
 		userInfo.setRoles(userObj.getAuthorities().toArray());
+		userInfo.setRoleCode(auth.getRoleCode());
 		userInfo.setAddress(userObj.getAddress());
 		userInfo.setCity(userObj.getCity());
 		userInfo.setSubscription(userObj.getSubscription());

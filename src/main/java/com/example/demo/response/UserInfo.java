@@ -16,8 +16,20 @@ public class UserInfo {
 	private String city;
 	private String subscription;
 	private Object roles;
+	private String roleCode;
 	
 	
+	
+	
+	
+	public String getRoleCode() {
+		return roleCode;
+	}
+
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
+	}
+
 	public long getId() {
 		return id;
 	}
