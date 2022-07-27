@@ -22,8 +22,10 @@ public interface ChargeRepository extends JpaRepository<Charge,Integer>{
 	//After The Cart Purchase The Item Must Be Removed From The Cart 
 	List<Charge> deleteAllById(int userid);
 
-	List<ChargeDto> deleteByUserid(int userid);
+	
 
 	Charge save(ChargeDto charge);
+
+	List<Charge> deleteByUserid(int userid);
 
 }

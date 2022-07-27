@@ -18,6 +18,10 @@ public class AuthorityService {
 	
 	public Authority getById(int id) {
 		Optional<Authority>auth = repository.findById(id);
-		return (auth.get());
+		Authority auths = null;
+		if(auth.isPresent()) {
+			auths = auth.get();
+		}
+		return (auths);
 	}
 }

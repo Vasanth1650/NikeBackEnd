@@ -7,33 +7,33 @@ package com.example.demo.dto;
 
 public class AuthDto {
 
-	private int user_id;
+	private int userid;
 	
 	
-	private int authorities_id;
+	private int authoritiesid;
 	
 	//Getters and Setters
-	public int getUser_id() {
-		return user_id;
+	public int getUserid() {
+		return userid;
 	}
 	
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	
-	public int getAuthorities_id() {
-		return authorities_id;
+	public int getAuthoritiesid() {
+		return authoritiesid;
 	}
 	
-	public void setAuthorities_id(int authorities_id) {
-		this.authorities_id = authorities_id;
+	public void setAuthoritiesid(int authoritiesid) {
+		this.authoritiesid = authoritiesid;
 	}
 	
 	
-	public AuthDto(int user_id, int authorities_id) {
+	public AuthDto(int userid, int authoritiesid) {
 		super();
-		this.user_id = user_id;
-		this.authorities_id = authorities_id;
+		this.userid = userid;
+		this.authoritiesid = authoritiesid;
 	}
 	
 	//Super Constructor To Refer To The Base Class
@@ -44,7 +44,7 @@ public class AuthDto {
 	//To String Helps To Get A String Object Representing The Value In Number Object 
 	@Override
 	public String toString() {
-		return "Auth [user_id=" + user_id + ", authorities_id=" + authorities_id + "]";
+		return "Auth [userid=" + userid + ", authoritiesid=" + authoritiesid + "]";
 	}
 	
 	

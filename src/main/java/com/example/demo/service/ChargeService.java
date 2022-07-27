@@ -71,7 +71,8 @@ public class ChargeService {
 	public List<ChargeDto> deleteById(int userid) {
 		//Logger Warns The Data From The Database Getting Deleted For The Particular UserId
 		logger.warn("After Checking Out The Object From The Checkout Is Deleted According To UserID ");
-		return repository.deleteByUserid(userid);
+		List<Charge>user = repository.deleteByUserid(userid);
+		return mapper.toChargeDtos(user);
 	}
 	
 	

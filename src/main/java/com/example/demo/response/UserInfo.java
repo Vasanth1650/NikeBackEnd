@@ -21,7 +21,6 @@ public class UserInfo {
 	
 	
 	
-	
 	public String getRoleCode() {
 		return roleCode;
 	}

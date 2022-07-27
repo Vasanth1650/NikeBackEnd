@@ -12,6 +12,7 @@
 
 package com.example.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,33 +28,34 @@ import javax.persistence.Table;
 public class Auth {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int user_id;
+	@Column(name="user_id")
+	private int userid;
 	
-	
-	private int authorities_id;
+	@Column(name="authorities_id")
+	private int authoritiesid;
 	
 	//Getters and Setters
-	public int getUser_id() {
-		return user_id;
+	public int getUserid() {
+		return userid;
 	}
 	
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	
-	public int getAuthorities_id() {
-		return authorities_id;
+	public int getAuthoritiesid() {
+		return authoritiesid;
 	}
 	
-	public void setAuthorities_id(int authorities_id) {
-		this.authorities_id = authorities_id;
+	public void setAuthoritiesid(int authoritiesid) {
+		this.authoritiesid = authoritiesid;
 	}
 	
 	
-	public Auth(int user_id, int authorities_id) {
+	public Auth(int userid, int authoritiesid) {
 		super();
-		this.user_id = user_id;
-		this.authorities_id = authorities_id;
+		this.userid = userid;
+		this.authoritiesid = authoritiesid;
 	}
 	
 	//no arg Constructor To Refer To The Base Class
@@ -64,7 +66,7 @@ public class Auth {
 	//To String Helps To Get A String Object Representing The Value In Number Object 
 	@Override
 	public String toString() {
-		return "Auth [user_id=" + user_id + ", authorities_id=" + authorities_id + "]";
+		return "Auth [userid=" + userid + ", authoritiesid=" + authoritiesid + "]";
 	}
 	
 	

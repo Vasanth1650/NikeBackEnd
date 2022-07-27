@@ -1,9 +1,8 @@
 package com.example.demo.dto;
 
+import java.io.Serializable;
 
-
-
-public class OrderedDto {
+public class OrderedDto implements Serializable{
 	private int id;
 	
 	private String username;
