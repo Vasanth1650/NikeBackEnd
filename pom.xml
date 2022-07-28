@@ -7,7 +7,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.0</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.nike</groupId>
 	<artifactId>NikeShoping</artifactId>
@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>com.stripe</groupId>
 			<artifactId>stripe-java</artifactId>
-			<version>20.111.0</version>
+			<version>20.129.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
